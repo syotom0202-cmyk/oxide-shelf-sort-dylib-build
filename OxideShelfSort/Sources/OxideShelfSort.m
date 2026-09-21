@@ -36,13 +36,8 @@ static void oss_try_sort(void) {
      * the no-argument entry used by Unity UI Button to invoke its onClick
      * event.  The clone name covers instantiated prefab objects.
      */
-    const char *objects[] = {
-        "ui_tab_sort",
-        "ui_tab_sort(Clone)",
-        "Core_Cabinet",
-        "Core_Cabinet(Clone)"
-    };
-    const char *methods[] = {"Press", "OnClick"};
+    const char *objects[] = {"ui_tab_sort", "ui_tab_sort(Clone)"};
+    const char *methods[] = {"Press"};
 
     for (NSUInteger i = 0; i < sizeof(objects) / sizeof(objects[0]); i++) {
         for (NSUInteger j = 0; j < sizeof(methods) / sizeof(methods[0]); j++) {
