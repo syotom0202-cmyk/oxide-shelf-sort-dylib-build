@@ -18,6 +18,7 @@ jobs:
             -miphoneos-version-min=15.0 \
             -framework Foundation \
             -framework UIKit \
+            -framework CoreGraphics \
             -install_name @rpath/OxideShelfSort.dylib \
             -o build/OxideShelfSort.dylib \
             OxideShelfSort/Sources/OxideShelfSort.m
