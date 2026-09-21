@@ -1,0 +1,30 @@
+name: build-shelf-sort-dylib
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build arm64 iOS dylib
+        run: |
+          mkdir -p build
+          xcrun --sdk iphoneos clang \
+            -dynamiclib \
+            -fobjc-arc \
+            -arch arm64 \
+            -miphoneos-version-min=15.0 \
+            -framework Foundation \
+            -framework UIKit \
+            -install_name @rpath/OxideShelfSort.dylib \
+            -o build/OxideShelfSort.dylib \
+            Sources/OxideShelfSort.m
+          file build/OxideShelfSort.dylib
+          otool -L build/OxideShelfSort.dylib
+      - name: Upload dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: OxideShelfSort-dylib
+          path: build/OxideShelfSort.dylib
